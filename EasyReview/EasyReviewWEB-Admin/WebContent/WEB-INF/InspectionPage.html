@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inspection Page</title>
+</head>
+<body>
+
+
+
+	<div align="right">
+		<a th:href="@{/Home}">Home</a>
+	</div>
+
+	<h1>This is the Inspection Page</h1>
+
+	<div>
+		<p>Complete the form to create a Product and a Questionnaire</p>
+		<form action="GetStatistics" method="GET">
+			<fieldset>
+
+				<p>
+					Questionnaire Date: <input type="date" name="date"
+						th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+						placeholder="yyyy-mm-dd" required />
+				</p>
+
+
+				<input type="submit" name="GetStatistics" value="GetStatistics">
+			</fieldset>
+			<p th:text=" ${message}"></p>
+		</form>
+	</div>
+
+
+	<br>
+	<br>
+
+
+	<div th:if="${#lists.isEmpty(users)}"></div>
+	<div th:if="${not #lists.isEmpty(users)}">
+
+
+		<h3>This is the list of users that completed the questionnaire in
+			the selected date.</h3>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Users</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u : ${users}">
+					<td th:text="${u.username}"></td>
+					<td th:text="${u.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<br> <br>
+
+
+		<h3>This is the list of users that have canceled the
+			questionnaire in the selected date.</h3>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Users</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${canceled}">
+					<td th:text="${c.username}"></td>
+					<td th:text="${c.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br> <br>
+
+
+
+		<h3>These are the answers to the selected questionnaire grouped
+			by the user.</h3>
+
+		<section>
+			<div align="left">
+				<ul th:unless="${#lists.isEmpty(forms)}">
+					<li th:each="f : ${forms}"><span
+						th:text="${'Username: ' + f.user.username +  ' Sex: '  + f.sex + ' Age: ' + f.age + ' Expertice: ' + f.expertice}"></span>
+						<ul th:unless="${#lists.isEmpty(f.answers)}">
+							<li th:each="a : ${f.answers}"><span th:text="${a.response}"></span>
+							</li>
+
+						</ul></li>
+				</ul>
+			</div>
+		</section>
+
+
+
+	</div>
+
+
+</body>
+</html>

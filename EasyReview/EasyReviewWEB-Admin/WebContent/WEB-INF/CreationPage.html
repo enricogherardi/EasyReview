@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Creation Page</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+
+
+
+	<div align="right">
+		<a th:href="@{/Home}">Home</a>
+	</div>
+
+
+	<h1>This is the Creation Page</h1>
+
+
+	<div class="formdiv">
+		<p>Complete the form to create a Product and a Questionnaire</p>
+		<form action="#" th:action="@{/CreateQuestionnaire}" method="POST"
+			enctype="multipart/form-data">
+			<fieldset>
+
+				<p>
+					Product Name: <input type="text" name="product"
+						th:value=${session.product} required />
+				</p>
+				<p>
+					Questionnaire Date: <input type="date" name="date"
+						th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+						placeholder="yyyy-mm-dd" th:value=${session.date} required />
+				</p>
+
+
+				<p>
+					Image: <input type="file" id="photoFile" name="picture"
+						th:value=${session.image} required>
+				</p>
+
+				Number of Questions: <input type="number" name="num" >
+					<input type="submit" name="Print" value="Print"
+						th:formaction="@{/PrintQuestions}">
+						
+			
+			
+				
+
+
+				<div th:if="${questionsNum == 0}"></div>
+				<div th:if="${questionsNum > 0}">
+
+				
+					<table>
+						<thead>
+							<tr>
+								<th>Questions</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:each="i : ${#numbers.sequence( 0, questionsNum -1)}">
+								<td><input th:name="${i}" type="text" class="form-control"
+									required /></td>
+							</tr>
+						</tbody>
+					</table>
+					
+
+				</div>
+
+					
+					<br>
+ 					
+				<input type="submit" name="CreateQuestionnaire"
+					value="CreateQuestionnaire">
+			</fieldset>
+			<p th:text=" ${message}"></p>
+		</form>
+	</div>
+
+
+
+
+	
+
+
+
+</body>
+</html>

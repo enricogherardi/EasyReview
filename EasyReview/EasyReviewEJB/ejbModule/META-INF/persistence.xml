@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="EasyReviewEJB"
+		transaction-type="JTA">
+		<jta-data-source>EasyReviewDB</jta-data-source>
+		<class>it.lea.entities.User</class>
+		<class>it.lea.entities.Log</class>
+		<class>it.lea.entities.FilledForm</class>
+		<class>it.lea.entities.Answer</class>
+		<class>it.lea.entities.Question</class>
+		<class>it.lea.entities.Questionnaire</class>
+		<class>it.lea.entities.Product</class>
+		<class>it.lea.entities.Review</class>
+		<class>it.lea.entities.Admin</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE" />
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -27,7 +27,3 @@ The application was realized with the following technologies:
  - Java Servlet and templating (JSP, JSTL or Thymeleaf) for the very simple User Interface;
  - Stateless and Statefull EJBs for the business objects;
  - JPA for Object Relational Mapping and Transaction Management;
-
-# Group Members
-This project was developed for the "Data Bases II" course at Politecnico di Milano by me (Ludovico Righi) and my colleague Enrico Gherardi.
-The final evaluation by our professor was 30/30.
